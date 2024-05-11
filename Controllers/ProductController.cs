@@ -35,6 +35,7 @@ namespace dotMVC.Controllers
         public ActionResult Details()
         {
             ViewData["title"] = "Chi tiết sản phẩm";
+            var ct = db.hanghoas.ToList();
 
             return View();
         }

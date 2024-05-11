@@ -36,7 +36,11 @@
     @RenderBody();
 
     @{Html.RenderAction("Footer", "Home");}
-
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger intent="WELCOME"
+                  chat-title="NewAgent"
+                  agent-id="74a436c9-6838-483a-8a2b-09760b72d7f6"
+                  language-code="vi"></df-messenger>
 
     <!-- Start Script -->
     <script src="~/assets/js/jquery-1.11.0.min.js"></script>
