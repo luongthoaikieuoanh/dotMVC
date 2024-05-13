@@ -29,10 +29,15 @@ namespace dotMVC.Controllers
             cthh_db = cthh_db.Where(m => m.idhanghoa == hh.mahh && m.mausac == cthh.mausac).ToList(); 
             String size = "";
             foreach (var i in cthh_db) {
-                size += i.idsize + "/";
+                size = i.idsize.ToString();
             }
-            size = size.Substring(0, size.Length - 1);
             ViewData["size"] = size;
+            String color = "";
+            foreach (var i in cthh_db)
+            {
+                color = i.idmau.ToString();
+            }
+            ViewData["color"] = color;
             return PartialView(cthh);
         }
         public ActionResult Details(int? id)
@@ -75,8 +80,15 @@ namespace dotMVC.Controllers
             // Lưu tên hình ảnh vào ViewData để sử dụng trong view
             ViewData["ProductImageName"] = imageName;
 
-            ViewData["Size"] = db.cthanghoas.Where(x => x.idhanghoa == id).Select(x => x.idsize).Distinct().ToList();
-            ViewData["Colors"] = db.cthanghoas.Where(x => x.idhanghoa == id).Select(x => x.idmau).Distinct().ToList();
+            ViewData["Size"] = (from cth in db.cthanghoas
+                                join sg in db.sizegiays on cth.idsize equals sg.Idsize
+                                where cth.idhanghoa == id
+                                select sg).Distinct().ToList();
+
+            ViewData["Colors"] = (from cth in db.cthanghoas
+                                  join sg in db.mausacs on cth.idmau equals sg.Idmau
+                                  where cth.idhanghoa == id
+                                  select sg).Distinct().ToList();
 
             if (product == null)
             {

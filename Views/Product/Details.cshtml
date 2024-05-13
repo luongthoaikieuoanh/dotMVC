@@ -3,8 +3,8 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var CTHangHoa = (List<dotMVC.Data.cthanghoa>)ViewData["CTHangHoa"];
-    var Sizes = (List<int>)ViewData["Size"];
-    var Color = (List<int>)ViewData["Colors"];
+    var Sizes = ((List<dotMVC.Data.sizegiay>)ViewData["Size"]).Select(x => x.size.ToString()).ToList();
+    var Color = ((List<dotMVC.Data.mausac>)ViewData["Colors"]).Select(x => x.mausac1.ToString()).ToList();
 }
 @model IEnumerable<dotMVC.Data.hanghoa>
 
@@ -90,10 +90,24 @@
                         <h1 class="h2">@product.tenhh</h1>
 
 
-                        <p class="h3 py-2">@ViewData["ProductPrice"]</p>
-                        <div class="product-discount">
-                            Giảm giá: @ViewData["ProductDiscount"]
-                        </div>
+                        @if (Convert.ToInt32(ViewData["ProductDiscount"]) == 0)
+                        {
+                            <div class="product-discount" style="display: none;">
+                                Giảm giá: @ViewData["ProductDiscount"]
+                            </div>
+                            <div class="product-discount">
+                                Giá: @ViewData["ProductPrice"]
+                            </div>
+ 
+                        }
+                        else
+                        {
+                            <p class="h3 py-2 text-decoration-line-through">@ViewData["ProductPrice"]</p>
+                            <div class="product-discount">
+                                Giảm giá: @ViewData["ProductDiscount"]
+                            </div>
+                        }
+
 
                         <p class="py-2">
                             <i class="fa fa-star text-warning"></i>
@@ -122,7 +136,7 @@
                             @foreach (var color in Color)
                             {
                                 <li class="list-inline-item">
-                                    <span class="btn btn-success btn-size">@color</span>
+                                    <button type="button" name="color" class="btn btn-success">@color</button>
                                 </li>
                             }
 
@@ -142,7 +156,7 @@
                                         @foreach (var size in Sizes)
                                         {
                                             <li class="list-inline-item">
-                                                <span class="btn btn-success btn-size">@size</span>
+                                                <button type="button" name="size" class="btn btn-info">@size</button>
                                             </li>
                                         }
 

@@ -15,7 +15,10 @@
         <div class="card-body">
             <a href="@Url.Action("Details", "Product", new { id = Model.idhanghoa })" class="h3 text-decoration-none">@ViewData["tenhh"]</a>
             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                <li>@ViewData["size"]</li>
+                <div class="row col">
+                <li class="col-6">@ViewData["size"] Size</li>
+                <li class="col-6 text-end">@ViewData["color"] Màu</li>
+                </div>
                 <li class="pt-2">
                     <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                     <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
