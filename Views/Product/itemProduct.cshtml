@@ -1,4 +1,5 @@
 ﻿@model dotMVC.Data.cthanghoa
+
 <div class="col-md-4">
     <div class="card mb-4 product-wap rounded-0">
         <div class="card rounded-0">
@@ -12,7 +13,7 @@
             </div>
         </div>
         <div class="card-body">
-            <a href="@Url.Action("details", "product")" class="h3 text-decoration-none">@ViewData["tenhh"]</a>
+            <a href="@Url.Action("Details", "Product", new { id = Model.idhanghoa })" class="h3 text-decoration-none">@ViewData["tenhh"]</a>
             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                 <li>@ViewData["size"]</li>
                 <li class="pt-2">
