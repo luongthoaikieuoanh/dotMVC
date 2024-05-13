@@ -26,18 +26,36 @@ namespace dotMVC.Controllers
             ViewData["tenhh"] = hh.tenhh;
             var cthh_db = db.cthanghoas.Where(m => m.idhanghoa == hh.mahh).ToList();
             var cthh = cthh_db.Take(1).SingleOrDefault();
-            cthh_db = cthh_db.Where(m => m.idhanghoa == hh.mahh && m.mausac == cthh.mausac).ToList(); 
+            cthh_db = cthh_db.Where(m => m.idhanghoa == hh.mahh && m.mausac == cthh.mausac).ToList();
             String size = "";
             foreach (var i in cthh_db) {
                 size = i.idsize.ToString();
             }
             ViewData["size"] = size;
-            String color = "";
-            foreach (var i in cthh_db)
-            {
-                color = i.idmau.ToString();
-            }
-            ViewData["color"] = color;
+
+
+            var mausacs = (from cth in db.cthanghoas
+                           join mau in db.mausacs on cth.idmau equals mau.Idmau
+                           where cth.idhanghoa == hh.mahh
+                           select new
+                           {
+                               mau.Idmau,
+                           }).Distinct().Count();
+
+            ViewData["color"] = mausacs.ToString();
+
+
+            var productPrice = db.cthanghoas.Where(x => x.idhanghoa == hh.mahh).Select(x => x.dongia).FirstOrDefault();
+
+            // Lưu giá vào ViewData để sử dụng trong view
+            ViewData["ProductPrice"] = productPrice;
+
+            // Lấy giảm giá của sản phẩm từ cơ sở dữ liệu
+            var productDiscount = db.cthanghoas.Where(x => x.idhanghoa == hh.mahh).Select(x => x.giamgia).FirstOrDefault();
+
+            // Lưu giảm giá vào ViewData để sử dụng trong view
+            ViewData["ProductDiscount"] = productDiscount;
+
             return PartialView(cthh);
         }
         public ActionResult Details(int? id)

@@ -1,5 +1,7 @@
 ﻿@model dotMVC.Data.cthanghoa
-
+@{ 
+    var CTHangHoa = (List<dotMVC.Data.cthanghoa>)ViewData["CTHangHoa"];
+}
 <div class="col-md-4">
     <div class="card mb-4 product-wap rounded-0">
         <div class="card rounded-0">
@@ -14,29 +16,40 @@
         </div>
         <div class="card-body">
             <a href="@Url.Action("Details", "Product", new { id = Model.idhanghoa })" class="h3 text-decoration-none">@ViewData["tenhh"]</a>
-            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                 <div class="row col">
-                <li class="col-6">@ViewData["size"] Size</li>
-                <li class="col-6 text-end">@ViewData["color"] Màu</li>
-                </div>
-                <li class="pt-2">
-                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                    <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                    <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                    <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                    <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                </li>
-            </ul>
-            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                <li>
-                    <i class="text-warning fa fa-star"></i>
-                    <i class="text-warning fa fa-star"></i>
-                    <i class="text-warning fa fa-star"></i>
-                    <i class="text-muted fa fa-star"></i>
-                    <i class="text-muted fa fa-star"></i>
-                </li>
-            </ul>
-            <p class="text-center mb-0">@Model.dongia</p>
+                <p class="col-6">@ViewData["size"] Size</p>
+                <p class="col-6 text-end">@ViewData["color"] Màu</p>
+                 </div>
+            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+        <li class="pt-2">
+            <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+            <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+            <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+            <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+            <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+        </li>
+        </ul>
+        <ul class="list-unstyled d-flex justify-content-center mb-1">
+            <li>
+                <i class="text-warning fa fa-star"></i>
+                <i class="text-warning fa fa-star"></i>
+                <i class="text-warning fa fa-star"></i>
+                <i class="text-muted fa fa-star"></i>
+                <i class="text-muted fa fa-star"></i>
+            </li>
+        </ul>
+        <div class="text-center mb-0">
+            @if (Convert.ToInt32(ViewData["ProductDiscount"]) == 0)
+            {
+                <p class="text-center">
+                    @ViewData["ProductPrice"]
+                </p>
+            }
+            else
+            {
+                <p class="text-center"><span class="h3 py-2 text-decoration-line-through">@ViewData["ProductPrice"]</span> @ViewData["ProductDiscount"]</p>
+            }
         </div>
+    </div>
     </div>
 </div>
