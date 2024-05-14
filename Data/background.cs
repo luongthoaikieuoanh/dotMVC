@@ -15,6 +15,19 @@ namespace dotMVC.Data
 
         [Required]
         [StringLength(500)]
+        public string ten { get; set; }
+
+        [Required]
+        [StringLength(500)]
+        public string tieude { get; set; }
+
+        [Required]
+        [StringLength(500)]
         public string url { get; set; }
+
+        public int active { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime ngayactive { get; set; }
     }
 }

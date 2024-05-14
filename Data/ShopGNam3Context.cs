@@ -29,6 +29,7 @@ namespace dotMVC.Data
         public virtual DbSet<sizegiay> sizegiays { get; set; }
         public virtual DbSet<tinhtrang> tinhtrangs { get; set; }
         public virtual DbSet<voucher> vouchers { get; set; }
+        public virtual DbSet<anhct> anhcts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -46,6 +47,14 @@ namespace dotMVC.Data
                 .HasMany(e => e.AspNetUserLogins)
                 .WithRequired(e => e.AspNetUser)
                 .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<background>()
+                .Property(e => e.ten)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<background>()
+                .Property(e => e.tieude)
+                .IsUnicode(false);
 
             modelBuilder.Entity<background>()
                 .Property(e => e.url)
@@ -146,6 +155,10 @@ namespace dotMVC.Data
                 .HasMany(e => e.hoadons)
                 .WithRequired(e => e.voucher)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<anhct>()
+                .Property(e => e.anh)
+                .IsUnicode(false);
         }
     }
 }
