@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Data\anhct.cs" />
     <Compile Include="Data\AspNetRole.cs" />
     <Compile Include="Data\AspNetUser.cs" />
     <Compile Include="Data\AspNetUserClaim.cs" />

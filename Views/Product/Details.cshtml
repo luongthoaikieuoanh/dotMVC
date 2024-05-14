@@ -5,12 +5,14 @@
     var CTHangHoa = (List<dotMVC.Data.cthanghoa>)ViewData["CTHangHoa"];
     var Sizes = ((List<dotMVC.Data.sizegiay>)ViewData["Size"]).Select(x => x.size.ToString()).ToList();
     var Color = ((List<dotMVC.Data.mausac>)ViewData["Colors"]).Select(x => x.mausac1.ToString()).ToList();
+    var Image = ((List<dotMVC.Data.anhct>)ViewData["Image"]).Select(x => x.anh.ToString()).ToList();
+
 }
 @model IEnumerable<dotMVC.Data.hanghoa>
 
 
 @{
-    ViewBag.Title = "Chi tiết sản phẩm";
+    ViewBag.Title = "Chi tiết sản phẩm";s
 }
 
 <h2>@ViewBag.Title</h2>
@@ -45,26 +47,14 @@
                             <!--First slide-->
                             <div class="carousel-item active">
                                 <div class="row">
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <img class="card-img img-fluid" src="~/Assets/img/gtn1_den1.jpg" alt="Product Image 1">
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <img class="card-img img-fluid" src="~/Assets/img/gtn1_den2.jpg" alt="Product Image 2">
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <img class="card-img img-fluid" src="~/Assets/img/gtn1_den3.jpg" alt="Product Image 3">
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <img class="card-img img-fluid" src="~/Assets/img/gtn1_den4.jpg" alt="Product Image 3">
-                                        </a>
-                                    </div>
+                                    @foreach (var image in Image)
+                                    {
+                                        <div class="col-4">
+                                            <a href="#">
+                                                <img class="card-img img-fluid" src="~/Assets/img/@image" alt="Product Image 1">
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                             <!--/.First slide-->

@@ -108,6 +108,11 @@ namespace dotMVC.Controllers
                                   where cth.idhanghoa == id
                                   select sg).Distinct().ToList();
 
+            ViewData["Image"] = (from cth in db.hanghoas
+                                 join sg in db.anhcts on cth.mahh equals sg.mahh
+                                 where cth.mahh == id
+                                 select sg).Distinct().ToList();
+
             if (product == null)
             {
                 return HttpNotFound();
